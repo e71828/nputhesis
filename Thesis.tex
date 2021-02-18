@@ -68,27 +68,31 @@
 \listoftables% table catalog
 }
 \input{Tex/Prematter}% list of symbols, preface content
-	%-
-	%-> Mainmatter
-	%-
-	\mainmatter% initialize the environment
-	\input{Tex/Mainmatter}% main content
-	%-
-	%-> Appendix
-	%-
-	\cleardoublepage%
-	\appendix% initialize the environment
-	\input{Tex/Appendix}% appendix content
-	%-
-	%-> Backmatter: bibliography, glossary, index
-	%-
-	\backmatter% initialize the environment
+%-
+%-> Mainmatter
+%-
+\mainmatter% initialize the environment
+\input{Tex/Mainmatter}% main content
+%-
+%-> Appendix
+%-
+\cleardoublepage%
+\appendix% initialize the environment
+\input{Tex/Appendix}% appendix content
+%-
+%-> Backmatter: bibliography, glossary, index
+%-
+\backmatter% initialize the environment
 %	\nocite{*}%添加此处
-	\intotoc*{\cleardoublepage}{\bibname}% add link to toc
+\intotoc*{\cleardoublepage}{\bibname}% add link to toc
+\artxifstreq{\artxbib}{bibtex}{% enable bibtex
 	\bibliography{Biblio/ref}% bibliography
-		\cleardoublepage%
-	\input{Tex/Backmatter}% other information
+}{%
+	\printbibliography% bibliography
+}
+\cleardoublepage%
+\input{Tex/Backmatter}% other information
 
-	\end{document}
-	%---------------------------------------------------------------------------%
+\end{document}
+%---------------------------------------------------------------------------%
 
