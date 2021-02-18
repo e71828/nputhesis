@@ -285,7 +285,11 @@
     \let\mymainmatter\mainmatter%
     \renewcommand{\mainmatter}{%
         \mymainmatter%
-        \pagestyle{withlogo}%mainmatterstyle
+        \ifnpu@Bachelor
+            \pagestyle{withlogo}%
+        \else
+            \pagestyle{mainmatterstyle}
+        \fi
         \if@twoside
             \fancyfoot[C]{\footnotesize \ifnumodd{\value{page}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
         \fi
@@ -295,7 +299,11 @@
     \let\mybackmatter\backmatter%
     \renewcommand{\backmatter}{%
         \mybackmatter%
-        \pagestyle{withlogo}%backmatterstyle
+        \ifnpu@Bachelor
+            \pagestyle{withlogo}%
+        \else
+            \pagestyle{mainmatterstyle}
+        \fi
         \if@twoside
             \fancyfoot[C]{\footnotesize \ifnumodd{\value{page}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
         \fi
@@ -437,7 +445,7 @@
             \end{minipage}
             \vspace*{\stretch{25}}\\
             \zihao{1}
-            \raisebox{25pt}{题目}
+            \raisebox{18pt}{题目}
             \linespread{1.5}\selectfont
             \hspace*{-10pt}
                 \begin{minipage}[c]{300pt}
