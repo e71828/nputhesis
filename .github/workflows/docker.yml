@@ -29,6 +29,7 @@ jobs:
         with:
           run: |
             sed -i '/\$PDFviewer/d' artratex.sh  #Do not open the file
+            chmod +x artratex.sh  #Permission denied
             ./artratex.sh xa  #Compiler with xelatex and bibtex
       - name: Check pdf files
         run: file Tmp/Thesis.pdf | grep -q ' PDF '
