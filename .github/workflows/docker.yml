@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build on Texlive in docker
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile basic LaTeX document
+        uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            sed -i '/\$PDFviewer/d' artratex.sh  #Do not open the file
+            ./artratex.sh xa  #Compiler with xelatex and bibtex
+      - name: Check pdf files
+        run: file Tmp/Thesis.pdf | grep -q ' PDF '
+      - name: upload
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: PDF
+          path: Tmp/Thesis.pdf
