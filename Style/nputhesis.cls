@@ -187,7 +187,7 @@
 }
 %- underline
 \ifxetex% use underline from xeCJKfntef
-    %   \RequirePackage{CJKulem}
+    \RequirePackage{ulem}
 \else% use underline from ulem
     \RequirePackage{ulem}%
 \fi
